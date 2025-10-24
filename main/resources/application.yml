@@ -1,0 +1,16 @@
+spring:
+  application:
+          name: Backend_16
+
+  datasource:
+    username: postgres
+    password: 1234
+
+    url : jdbc:postgresql://localhost:5432/todo
+
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode : always
+
