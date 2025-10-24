@@ -14,3 +14,10 @@ spring:
     init:
       mode : always
 
+
+springdoc:
+  api-docs:
+    path: /docs
+
+
+

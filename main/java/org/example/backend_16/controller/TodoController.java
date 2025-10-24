@@ -1,6 +1,8 @@
 package org.example.backend_16.controller;
 
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.example.backend_16.dto.MessageDto;
@@ -21,6 +23,7 @@ public class TodoController {
     private final TodoService todoService;
 
     @GetMapping("/todos")
+    @Operation(summary = "Get All todo", description = "Barcha todolarni olish")
     public ResponseEntity<List<Todo>>getAll() {
     List<Todo>  body = todoService.getAll();
         return ResponseEntity

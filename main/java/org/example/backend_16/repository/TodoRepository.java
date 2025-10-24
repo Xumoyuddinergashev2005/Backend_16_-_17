@@ -22,60 +22,45 @@ public class TodoRepository {
 
 
     public void save (Todo todo){
-        try{
+
             String query = "INSERT INTO todo (title, description, status) VALUES (?,?,?)";
             jdbcTemplate.update(query, todo.getTitle(), todo.getDescription(), todo.getStatus().toString());
 
-        } catch(Exception e){
-            log.error("Error : {}",e.getMessage());
-        }
     }
 
 
     public Todo getById(Long id){
-        try{
+
            String query = "SELECT * FROM todo WHERE id = ?";
            Object[] args = {id};
            return jdbcTemplate.queryForObject (query, args , new TodoMapper());
-        } catch(Exception e){
-            log.error("Error : {}",e.getMessage());
-            return null;
-        }
+
 
     }
 
 
     public List<Todo> getAll(){
-        try{
+
             String query ="SELECT * FROM todo";
             return jdbcTemplate.query(query, new TodoMapper());
-        } catch (Exception e){
-            log.error("Error : {}",e.getMessage());
-            throw new RuntimeException(e.getMessage());
-        }
+
     }
 
     public void updateStatus(Status newStatus, Long id) {
-       try {
+
            String query = "UPDATE  todo set status = ? WHERE id = ?";
            Object[] args = {newStatus.name(), id};
            jdbcTemplate.update(query, args);
-       } catch (DataAccessException e) {
-           log.error("Error : {}",e.getMessage());
-           throw new RuntimeException(e);
-       }
+
     }
 
     public void deleteTodo(Long id) {
 
-       try{
+
            String query = "DELETE FROM todo where id = ?";
            Object[] args = {id};
            jdbcTemplate.update(query, args);
-       } catch (DataAccessException e) {
-           log.error("Error : {}",e.getMessage());
-           throw new RuntimeException(e);
-       }
+
     }
 
     public boolean existsById(Long id) {
